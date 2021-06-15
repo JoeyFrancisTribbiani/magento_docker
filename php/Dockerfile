@@ -52,7 +52,7 @@ RUN cd ~ \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
-RUN chown -R www-data:www-data  &&  chmod -R 777 /var/www/html
+RUN chown -R www-data:www-data /var/www/html &&  chmod -R 777 /var/www/html
 
 CMD ["php-fpm", "-R"]
 
