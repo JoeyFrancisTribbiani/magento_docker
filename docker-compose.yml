@@ -92,8 +92,9 @@ services:
     environment:
       - node.name=es01
       - cluster.name=docker-cluster
-      - discovery.seed_hosts=es02
-      - cluster.initial_master_nodes=es01,es02
+      # - discovery.seed_hosts=es02
+      - cluster.initial_master_nodes=es01
+      # ,es02
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
@@ -105,25 +106,25 @@ services:
     ports:
       - 9200:9200
 
-  es02:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
-    container_name: es02
-    environment:
-      - node.name=es02
-      - cluster.name=docker-cluster
-      - discovery.seed_hosts=es01
-      - cluster.initial_master_nodes=es01,es02
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - es7data02:/usr/share/elasticsearch/data
+  # es02:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+  #   container_name: es02
+  #   environment:
+  #     - node.name=es02
+  #     - cluster.name=docker-cluster
+  #     - discovery.seed_hosts=es01
+  #     - cluster.initial_master_nodes=es01,es02
+  #     - bootstrap.memory_lock=true
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #   volumes:
+  #     - es7data02:/usr/share/elasticsearch/data
 
 volumes:
   es7data01:
     driver: local
-  es7data02:
-    driver: local
+  # es7data02:
+  #   driver: local
