@@ -10,6 +10,7 @@ services:
   #   - ./magento2:/var/www/html
   php:
     image: fotonicia/php
+    restart: always
     build: php
     volumes:
       - ./magento2:/var/www/html
@@ -25,6 +26,7 @@ services:
 
   nginx:
     image: fotonicia/nginx
+    restart: always
     build: nginx
     ports:
       - 80:80
@@ -62,6 +64,7 @@ services:
 
   cron:
     image: fotonicia/cron
+    restart: always
     build: cron
     volumes:
       - ./magento2:/var/www/html
@@ -104,6 +107,7 @@ services:
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
     container_name: es01
+    restart: always
     environment:
       - node.name=es01
       - cluster.name=docker-cluster
@@ -125,6 +129,7 @@ services:
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
     container_name: es02
+    restart: always
     environment:
       - node.name=es02
       - cluster.name=docker-cluster
